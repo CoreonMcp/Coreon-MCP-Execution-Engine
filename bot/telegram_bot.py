@@ -30,15 +30,15 @@ def ensure_openai_api_key() -> str:
     key = os.getenv("OPENAI_API_KEY", "").strip()
 
     if not key:
-        print("🔐 Missing OpenAI API Key. | 请输入你的 OpenAI API Key（sk-xxxx 开头）：")
+        print("🔐 Missing OpenAI API Key.")
         while True:
             key = input(" > ").strip()
             if key.startswith("sk-"):
                 set_key(str(ENV_PATH), "OPENAI_API_KEY", key)
-                print("✅ OPENAI_API_KEY has been saved. | 已保存OPENAI API KEY。")
+                print("✅ OPENAI_API_KEY has been saved.")
                 break
             else:
-                print("❗️Format error. It must start with sk-. Please re-enter: | 格式错误，必须以 sk- 开头。请重新输入：")
+                print("❗️Format error. It must start with sk-. Please re-enter:")
 
     load_dotenv(dotenv_path=ENV_PATH, override=True)
 
@@ -55,22 +55,21 @@ async def start_bot():
 
     ensure_openai_api_key()
 
-    BOT_TOKEN = input("🤖 Please enter your Bot Token ｜ 请输入你的 Bot Token：").strip()
+    BOT_TOKEN = input("🤖 Please enter your Bot Token").strip()
     if not is_valid_token(BOT_TOKEN):
-        print("❌ Invalid token. Please check and try again. ｜ Token 无效，请检查后重试。")
+        print("❌ Invalid token. Please check and try again.")
         return
 
     print("✅ Token verification successful. Please add a whitelist user ID.")
-    print("🛡️ 你必须输入一个白名单用户 ID，否则无法启动。")
 
     while True:
-        whitelist_input = input("📝 Enter user ID (数字)：").strip()
+        whitelist_input = input("📝 Enter user ID：").strip()
         if whitelist_input.isdigit():
             WHITE_LIST.add(int(whitelist_input))
             print(f"✅ Added user ID {whitelist_input} to whitelist.")
             break
         else:
-            print("❗ 请输入有效的数字用户 ID，不能为空，也不能跳过。")
+            print("❗ Please enter a valid digital user ID. It cannot be left blank or skipped.")
 
     try:
         bot = Bot(token=BOT_TOKEN)

@@ -183,25 +183,25 @@ EOF
 #### 1. Pull the Docker Image
 
 ````
-docker pull Coreon-MCP/Coreon-MCP-Execution-Engine
+docker pull coreonmcp/coreon-mcp-execution-engine
 ````
 
 #### 2. Start CLI Mode
 ![demo](./assets/gif/Start%20CLI%20Mode.gif)
 ````
-docker run --rm -it --env-file .env Coreon-MCP/Coreon-MCP-Execution-Engine start cli
+docker run --rm -it --env-file .env coreonmcp/coreon-mcp-execution-engine start cli
 ````
 
 #### 3. API Server Mode
 ![demo](./assets/gif/API%20Server%20Mode_2.gif)
 ````
-docker run --rm -it --env-file .env -p 8080:8080 Coreon-MCP/Coreon-MCP-Execution-Engine start server
+docker run --rm -it --env-file .env -p 8080:8080 coreonmcp/coreon-mcp-execution-engine start server
 ````
 
 #### 4. Telegram Bot Mode
 ![demo](./assets/gif/Telegram%20Bot%20Mode.gif)
 ````
-docker run --rm -it --env-file .env Coreon-MCP/Coreon-MCP-Execution-Engine start telegram-bot
+docker run --rm -it --env-file .env coreonmcp/coreon-mcp-execution-engine start telegram-bot
 ````
 
 ## 🌟 Future Vision
