@@ -28,7 +28,6 @@ tools:
         response_schema_class: GetTokensResponse
         usage_hint: "Extract project socials using CA address"
 
-
       - name: get_native_balance
         module: tools.token.logic
         function: get_native_balance
@@ -37,6 +36,7 @@ tools:
         response_schema_module: tools.token.schema
         response_schema_class: GetNativeBalanceResponse
         usage_hint: "Extract project socials using CA address"
+        source: Datai Network
 
       - name: get_token_metadata
         module: tools.token.logic

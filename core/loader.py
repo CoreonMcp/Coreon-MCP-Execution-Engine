@@ -21,6 +21,7 @@ def load_config_tools(yaml_path: str = "config/tools.yaml") -> dict:
             param_names = []
             param_desc = {}
             response_fields = {}
+            source = None
 
             if "schema_module" in func and "schema_class" in func:
                 schema_module = importlib.import_module(func["schema_module"])
@@ -44,13 +45,17 @@ def load_config_tools(yaml_path: str = "config/tools.yaml") -> dict:
                             "description": model_field.description or ""
                         }
 
+            if "source" in func:
+                source = func["source"]
+
             tool_map[key] = {
                 "module": module_path,
                 "function": function_name,
                 "schema": schema_class,
                 "param_names": param_names,
                 "params": param_desc,
-                "response_fields": response_fields
+                "response_fields": response_fields,
+                "source": source,
             }
 
     return tool_map

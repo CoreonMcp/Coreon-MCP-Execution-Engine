@@ -33,7 +33,7 @@ async def get_native_balance(params: GetWalletTokensParams):
         async with httpx.AsyncClient() as client:
             resp = await client.post(
                 f"{BASE_URL}/proxy/bsc/wallet/nativebalance",
-                json={"address": params.addressss}
+                json={"address": params.address}
             )
             data = resp.json()
             return data
