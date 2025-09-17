@@ -204,6 +204,17 @@ docker run --rm -it --env-file .env -p 8080:8080 coreonmcp/coreon-mcp-execution-
 docker run --rm -it --env-file .env coreonmcp/coreon-mcp-execution-engine start telegram-bot
 ````
 
+## 🔗 BNB Chain Integration
+
+Coreon MCP Execution Engine is designed as the AI Execution Layer for Web3, with a strong focus on the BNB Chain ecosystem (BSC / BNB Smart Chain).
+> Current support: Query balances, token metadata, DeFi data, and contract calls on BNB Smart Chain (BSC).
+>
+> Mid-term roadmap: Natural-language swaps on PancakeSwap, AI wallet assistants, and on-chain security monitoring for BNB users.
+> 
+> Future vision: Expand to opBNB (for low-cost L2 execution) and Greenfield (for decentralized data storage), making Coreon MCP a full-stack AI interface for the entire BNB ecosystem.
+
+By bridging natural language with on-chain execution, Coreon MCP lowers entry barriers and positions BNB as the first AI-Ready blockchain.
+
 ## 🌟 Future Vision
 
 Our story is just beginning.
