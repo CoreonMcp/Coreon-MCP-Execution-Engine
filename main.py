@@ -40,6 +40,15 @@ def start_telegram_bot():
     except KeyboardInterrupt:
         print("\n👋 Exit Telegram Bot by user (Ctrl+C)")
 
+def start_stdio_adapter():
+    try:
+        from adapters.mcp_stdio_adapter import main
+        asyncio.run(main())
+    except ImportError:
+        print("❌ Failed to start StdIO Adapter: adapters.mcp_stdio_adapter not found.")
+    except KeyboardInterrupt:
+        print("\n👋 Exit MCP StdIO Adapter by user (Ctrl+C)")
+
 if __name__ == "__main__":
     if len(sys.argv) == 3 and sys.argv[1] == "start":
         mode = sys.argv[2].lower()
@@ -49,6 +58,8 @@ if __name__ == "__main__":
             start_server()
         elif mode == "telegram-bot":
             start_telegram_bot()
+        elif mode == "stdio":
+            start_stdio_adapter()
         else:
             print("❗ Unknown mode:", mode)
             print_usage()

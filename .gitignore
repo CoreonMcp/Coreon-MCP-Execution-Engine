@@ -12,5 +12,5 @@ main.spec
 __pycache__/
 *.pyc
 service/response.py
-
+README.md
 
