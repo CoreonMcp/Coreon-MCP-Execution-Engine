@@ -166,6 +166,7 @@ Generate the environment file with required variables:
 cat <<EOF > .env
 MCP_LANG=EN
 OPENAI_API_KEY=sk-xxxxxxxxxx
+WALLET_ADDRESS=0x....
 EOF
 ```
 
@@ -203,6 +204,34 @@ docker run --rm -it --env-file .env -p 8080:8080 coreonmcp/coreon-mcp-execution-
 ````
 docker run --rm -it --env-file .env coreonmcp/coreon-mcp-execution-engine start telegram-bot
 ````
+
+#### 5. Claude MCP Protocol Support (Stdio Adapter)
+This project now supports Claude-style MCP stdio integration.
+
+🔌 Usage (Stdio Mode)
+
+To run the MCP stdio adapter for Claude-compatible local agent execution:
+Example Claude Config
+```
+{
+  "mcpServers": {
+    "coreon-mcp-engine": {
+      "command": "docker",
+      "args": [
+        "run", "-i", "--rm",
+        "--platform", "linux/amd64",
+        "--env-file", "path.../.env",
+        "coreonmcp/coreon-mcp-execution-engine",
+        "start", "stdio"
+      ]
+    }
+  }
+}
+```
+> ✅ Ensure this project is built as a single-file executable or Docker image (coreonmcp/coreon-mcp-execution-engine) before using with Claude.
+
+##### 🔍 Notes on --env-file
+> Replace "path.../.env" with the full path to your local .env file.
 
 ## 🔗 BNB Chain Integration
 
