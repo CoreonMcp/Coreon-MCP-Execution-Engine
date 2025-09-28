@@ -206,6 +206,8 @@ docker run --rm -it --env-file .env coreonmcp/coreon-mcp-execution-engine start 
 ````
 
 #### 5. Claude MCP Protocol Support (Stdio Adapter)
+![demo](./assets/gif/Claude.gif)
+
 This project now supports Claude-style MCP stdio integration.
 
 🔌 Usage (Stdio Mode)
