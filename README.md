@@ -4,9 +4,12 @@
 ![demo](./assets/gif/Index.gif)
 
 ## 📢 Latest Update
-> 2025-09-19 – The project now officially supports the Claude-style MCP protocol (stdio mode) in the new alpha version.
->
-> [View full details here](https://github.com/CoreonMcp/Coreon-MCP-Execution-Engine/tree/alpha?tab=readme-ov-file#5-claude-mcp-protocol-support-stdio-adapter)
+1. 2025-09-19 – The project now officially supports the Claude-style MCP protocol (stdio mode) in the new alpha version.
+    [View full details here](https://github.com/CoreonMcp/Coreon-MCP-Execution-Engine/tree/alpha?tab=readme-ov-file#5-claude-mcp-protocol-support-stdio-adapter)
+    
+    ![demo](./assets/gif/Claude.gif)
+
+    
 
 ## 1. Product Overview
 
