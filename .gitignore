@@ -3,14 +3,10 @@ build
 .env
 build.sh
 Dockerfile
-logs
-config/prompt.py
-config/settings.py
 main.spec
 .DS_Store
 .idea
 __pycache__/
 *.pyc
-service/response.py
 
 
