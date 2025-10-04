@@ -224,6 +224,15 @@ Coreon MCP Execution Engine is designed as the AI Execution Layer for Web3, with
 
 By bridging natural language with on-chain execution, Coreon MCP lowers entry barriers and positions BNB as the first AI-Ready blockchain.
 
+## 🛡️ Security Audit Report
+
+An independent security audit was conducted by **Armors Labs** on the Coreon MCP Execution Engine.  
+- **Result:** PASSED ✅  
+- **Auditor:** Armors Labs  
+
+The full audit report is available here:  
+👉 [Audit Report (PDF)](https://github.com/CoreonMcp/Coreon-MCP-Execution-Engine/blob/audit-code/audits/Coreon%20MCP%20Execution%20Engine_audit.pdf)
+
 ## 🌟 Future Vision
 
 Our story is just beginning.
