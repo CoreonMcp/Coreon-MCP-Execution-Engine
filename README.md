@@ -117,7 +117,7 @@ flowchart LR
     F --> G
 ```
 
-#### 4. Why This Matters 
+## 4. Why This Matters 
 **Before vs With x402 Support**
 
 | Before | With x402 Support |
