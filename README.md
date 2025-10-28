@@ -3,8 +3,37 @@
 
 ![demo](./assets/gif/Index.gif)
 
+## 🔀 x402 Support Branch — coreon-mcp-x402
+
+We have created a dedicated branch to track our x402 integration progress.  
+This branch includes the latest README focused on x402 signal support and Agent payment workflows.
+
+🔗 Branch link:  
+https://github.com/CoreonMcp/Coreon-MCP-Execution-Engine/tree/coreon-mcp-x402
+
+📌 Highlights:
+- ✅ First x402-ready Agent Execution Engine on **BNB Chain**
+- ✅ Detects HTTP 402 signals from paid APIs
+- ✅ Suspends execution & informs user of required payment
+- 🚧 Autonomous Agent Payments — coming soon
+
+If you're interested in x402 + Agent Economy development, please follow this branch for more updates. 
+
 ## 📢 Latest Update
-1. 2025-09-19 – The project now officially supports the Claude-style MCP protocol (stdio mode) in the new alpha version.
+### 2025-10 - x402 Support Branch Released
+
+A new branch `coreon-mcp-x402` is available for tracking our integration with  
+the x402 payment signal protocol on BNB Chain.
+
+🔗 https://github.com/CoreonMcp/Coreon-MCP-Execution-Engine/tree/coreon-mcp-x402
+
+Features include:
+- x402 payment signal detection (HTTP 402)
+- Multi-chain support (Base / BNB Chain)
+- PaymentRequired state management
+
+*(Autonomous agent payment coming soon 🚀)*
+### 2025-09 - The project now officially supports the Claude-style MCP protocol (stdio mode) in the new alpha version.
     [View full details here](https://github.com/CoreonMcp/Coreon-MCP-Execution-Engine/tree/alpha?tab=readme-ov-file#5-claude-mcp-protocol-support-stdio-adapter)
     
     ![demo](./assets/gif/Claude.gif)
