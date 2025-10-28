@@ -140,7 +140,14 @@ flowchart LR
 4. User/Agent pays
 5. MCP validates & continues execution
 
-## 6. Vision
+## 6. Development Roadmap
+| Phase | Timeline | Status |
+|------|----------|--------|
+| x402 Signal Support | 1-2 week | Ready |
+| Autonomous Payment MVP | 3–4 weeks | In Progress |
+| Full Agent Economy Support | 6–8 weeks | Planned |
+
+## 7. Vision
 **MCP + x402**
 -> Agents not only think and act
 -> They can trade, pay, and economically operate 🚀
