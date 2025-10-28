@@ -1,39 +1,47 @@
 ## Coreon-MCP-Execution-Engine
 **Welcome to Coreon MCP Execution Engine**
 
+**A modular execution engine for MCP agents —  now enhanced with native x402 payment signal support.**
+
 ![demo](./assets/gif/Index.gif)
 
-## 📢 Latest Update
-1. 2025-09-19 – The project now officially supports the Claude-style MCP protocol (stdio mode) in the new alpha version.
-    [View full details here](https://github.com/CoreonMcp/Coreon-MCP-Execution-Engine/tree/alpha?tab=readme-ov-file#5-claude-mcp-protocol-support-stdio-adapter)
-    
-    ![demo](./assets/gif/Claude.gif)
+## Overview
+MCP (Model Context Protocol) is evolving into the execution engine for the emerging Agent Economy.
+To support pay-per-use services and on-chain paid APIs, we are adding native support for the x402 payment signal protocol (HTTP 402 Payment Required).
 
-    
+With this update, MCP becomes the first x402-ready Agent Execution Engine on BNB Chain.
 
-## 1. Product Overview
+## 1. Phase 1 — x402 Signal Support (Shipping Soon)
 
-**Coreon-MCP-Execution-Engine** provides a unified runtime for structured `ToolCall` chains. It allows LLM agents or users to:
+**MCP can now recognize and manage external resources that require payment:** 
 
-> Dynamically execute multiple tools in sequence
->
-> Interact via terminal, HTTP API, or Telegram
->
-> Plug in custom tools via the modular `tools/` system
->
-> Use anywhere via Docker — no manual setup required
+1. Automatically detect HTTP 402 (x402) responses
+2. Parse payment metadata:
+    a. network (Base / BNB Chain supported)
+    b. asset (e.g. USDC / USDT)
+    c. amount & timeout
+    d. payment receiver
+3. Suspend execution and prompt users about the required payment
+4. Maintain ToolCall context for later continuation
 
-
-
-This project is inspired by the idea of decoupling **agent planning** from **tool execution**, making it perfect for backend execution engines, plugin-based AI systems, or on-chain/off-chain hybrid AI workflows.
-
-> Built-in modes: CLI / API Server / Telegram Bot
-> Docker-native, zero local dependency
-> Supports future extensibility with user-defined tools
+**This phase focuses on signal detection, interruption awareness, and state management.**
 
 
+> Today, MCP knows when a resource requires payment
+> — and tells the user clearly what is needed
 
-## 2. Architecture Overview
+## 2. Phase 2 — Autonomous Agent Payments (In Development)
+
+**We are building autonomous payment execution so Agents can:** 
+1.	Identify which network & asset to use
+(e.g. USDC on Base / USDT on BNB Chain)
+2.	Submit payment automatically or via user confirmation
+3.	Verify receipt and resume suspended execution
+4.	Complete full pay-per-use workflows without human intervention
+
+> Very soon, Agents will pay by themselves and keep working.
+
+## 3. Architecture Overview
 
 ```mermaid
 %%{init: {'theme': 'neutral'}}%%
@@ -43,29 +51,50 @@ flowchart LR
     end
 
     subgraph Planning[Planning Layer]
-        B["Planner\nIntent Recognition & Generate Plan(JSON)"]
+        B["Planner
+        Intent Recognition & Generate Plan(JSON)"]
     end
 
     subgraph Execution[Execution Layer]
-        C["Executor\nSequentially Execute ToolChain"]
+        C["Executor
+        Sequentially Execute ToolChain"]
+
+        C --> H["x402 Payment Signal Detector
+        Detect HTTP 402 & Parse Payment Metadata"]
+        H --> I["Payment State Manager
+        Suspend Execution & Record Required Payment"]
+        I -. Future .-> J["Autonomous Payment Engine
+        Automatic Payment & Resume Execution"]
+
     end
 
     subgraph Registry[Tool Registry Layer]
-        D["Tool Registry\nDeclaration: name/module/function/schema"]
+        D["Tool Registry
+        Declaration: name/module/function/schema"]
     end
 
     subgraph Toolset[Toolset]
         E{{Tools}}
-        E1[Market Data\nDexScreener / Binance]
-        E2[News Fetcher\nCryptoPanic / Feeds]
-        E3[Social Metrics\nTwitter / Telegram]
-        E4[On-chain APIs\nToken Metadata / Holders]
-        E5[Custom Utils\nFormatters / Indicators]
+        E1[Market Data
+        DexScreener / Binance]
+        E2[News Fetcher
+        CryptoPanic / Feeds]
+        E3[Social Metrics
+        Twitter / Telegram]
+        E4[On-chain APIs
+        Token Metadata / Holders]
+        E5[Custom Utils
+        Formatters / Indicators]
     end
 
     subgraph Output[Output Layer]
-        F["Response Formatter\nHuman-readable & Structured Output"]
+        F["Response Formatter
+        Human-readable & Structured Output"]
         G["Outputs\nCLI Charts / Telegram Messages / API JSON"]
+        H --> K["Payment Prompt
+        Inform User of Required Payment
+        (Network: Base / BNB Chain)"]
+        K --> G
     end
 
     A --> B
@@ -88,159 +117,32 @@ flowchart LR
     F --> G
 ```
 
-#### Main module 
+#### 4. Why This Matters 
+**Before vs With x402 Support**
 
-#####  **1. Planner (Task Parsing)**
+| Before | With x402 Support |
+|--------|------------------|
+| Tools fail on paid APIs | MCP pauses and informs the user |
+| Users don’t know why a tool stops | Transparent payment requirement |
+| Manual restarts needed | Automated recovery *(very soon)* |
+| No revenue model for tools | Built-in commercial execution |
 
->Acts as the “brain” of the MCP Engine. It takes natural language input from CLI, Telegram Bot, or API and:
->
->\- Recognizes user intent using LLM-based intent recognition.
->
->\- Generates a structured execution plan (`ToolCall Chain`) in JSON format.
->
->\- Breaks down complex tasks into ordered, executable steps.
+**This unlocks**
+1. pay-per-call API monetization
+2. decentralized machine-to-machine commerce
+3. scalable autonomous agents
+4. **MCP as execution OS for x402 services**
 
-##### **2. Executor (Chained ToolCall Execution)**
+## 5. Example User Flow
+1. User triggers a paid tool
+2. MCP detects x402 → Payment Required
+3. MCP suspends execution
+4. User/Agent pays
+5. MCP validates & continues execution
 
-> The “execution core” responsible for carrying out the plan generated by the Planner:
->
-> \- Executes tools step-by-step or in parallel when possible.
->
-> \- Handles retries, error recovery, and logging.
->
-> \- Ensures the correct order of execution across dependent tasks.
+## 6. Vision
+**MCP + x402**
+-> Agents not only think and act
+-> They can trade, pay, and economically operate 🚀
 
-##### **3. Tool Registry (Centralized Tool Management)**
-
-> A unified registry for all tools used by the MCP Engine:
->
-> \- Declares each tool’s name, module path, function signature, and parameter schema.
->
-> \- Stores tool metadata such as version and description.
->
-> \- Allows new tools to be plugged in without changing the execution logic.
-
-##### **4. Connectors (CLI, Telegram Bot)**
-
-> Entry points for different user interaction modes:
->
-> \- **CLI** – Developer-friendly command-line interface for direct execution and debugging.
->
-> \- **Telegram Bot** – Chat-based interface for instant, on-the-go interactions.
-
-
-
-## 3. Installation & Run
-
-#### 1. Environment Requirements
-
-> \- Python 3.11+
->
-> \- Docker
-
-#### 2. How to Install Docker
-
-##### macOS / Windows / Linux
-
-> 1. Download from the official Docker site:
->
->     https://www.docker.com/products/docker-desktop
->
-> 2. Follow the installation steps.
->
-> 3. After installation, run:
->
->    ```
->    docker --version
->    ```
->
->    If you see version output, Docker is installed.
-
-#### 3. Environment Configuration (.env)
-
-Follow these steps to get the MCP Engine running in minutes.
-
-#####  1. Create the Execution Environment Directory
-
-```
-mkdir mcp-execution-env
-cd mcp-execution-env
-```
-
-##### 2. Create the .environment File
-
-Generate the environment file with required variables:
-
-```
-cat <<EOF > .env
-MCP_LANG=EN
-OPENAI_API_KEY=sk-xxxxxxxxxx
-EOF
-```
-
-| Variable         | Description            | Required |
-| ---------------- | ---------------------- | -------- |
-| `MCP_LANG`       | Language: `EN` or `ZH` | Yes      |
-| `OPENAI_API_KEY` | OpenAI API Key         | Yes      |
-
-> Replace sk-xxxxxxxxxx with your actual **OpenAI API key**.
-
-
-
-## 4. Quick Start
-
-#### 1. Pull the Docker Image
-
-````
-docker pull coreonmcp/coreon-mcp-execution-engine
-````
-
-#### 2. Start CLI Mode
-![demo](./assets/gif/Start%20CLI%20Mode.gif)
-````
-docker run --rm -it --env-file .env coreonmcp/coreon-mcp-execution-engine start cli
-````
-
-#### 3. API Server Mode
-![demo](./assets/gif/API%20Server%20Mode_2.gif)
-````
-docker run --rm -it --env-file .env -p 8080:8080 coreonmcp/coreon-mcp-execution-engine start server
-````
-
-#### 4. Telegram Bot Mode
-![demo](./assets/gif/Telegram%20Bot%20Mode.gif)
-````
-docker run --rm -it --env-file .env coreonmcp/coreon-mcp-execution-engine start telegram-bot
-````
-
-## 🔗 BNB Chain Integration
-
-Coreon MCP Execution Engine is designed as the AI Execution Layer for Web3, with a strong focus on the BNB Chain ecosystem (BSC / BNB Smart Chain).
-> Current support: Query balances, token metadata, DeFi data, and contract calls on BNB Smart Chain (BSC).
->
-> Mid-term roadmap: Natural-language swaps on PancakeSwap, AI wallet assistants, and on-chain security monitoring for BNB users.
-> 
-> Future vision: Expand to opBNB (for low-cost L2 execution) and Greenfield (for decentralized data storage), making Coreon MCP a full-stack AI interface for the entire BNB ecosystem.
-
-By bridging natural language with on-chain execution, Coreon MCP lowers entry barriers and positions BNB as the first AI-Ready blockchain.
-
-## 🛡️ Security Audit Report
-
-An independent security audit was conducted by **Armors Labs** on the Coreon MCP Execution Engine.  
-- **Result:** PASSED ✅  
-- **Auditor:** Armors Labs  
-
-The full audit report is available here:  
-👉 [Audit Report (PDF)](https://github.com/CoreonMcp/Coreon-MCP-Execution-Engine/blob/audit-code/audits/Coreon%20MCP%20Execution%20Engine_audit.pdf)
-
-## 🌟 Future Vision
-
-Our story is just beginning.
-The MCP Execution Engine will keep evolving — becoming smarter and more powerful with every iteration.
-We’ll continue to refine features, explore new possibilities, and work hand in hand with developers to shape the future of Web3.
-
-
-
-
-
-
+**We are building the execution layer of the x402 economy.**
