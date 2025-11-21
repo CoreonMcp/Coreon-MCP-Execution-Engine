@@ -55,7 +55,7 @@ class GetWalletTokensParams(BaseModel):
     address: str = Field(..., description="Token Address")
 
 class GetMyWalletAddressParams(BaseModel):
-    source: str = Field(..., description="The source value")
+    wallet_address: str = Field(..., description="my wallet address")
 
 class GetPriceResponse(BaseModel):
     tokenName: str

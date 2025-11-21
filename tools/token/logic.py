@@ -1,4 +1,4 @@
-from .schema import GetTokenParams, GetWalletTokensParams
+from .schema import GetTokenParams, GetWalletTokensParams, GetMyWalletAddressParams
 import httpx
 from config.settings import settings
 
@@ -100,8 +100,8 @@ async def get_token_socials(params: GetTokenParams):
     except Exception as e:
         return {"error": str(e)}
 
-async def get_my_wallet_address():
-    return {"success": True, "data": {"wallet_address": settings.WALLET_ADDRESS}}
+async def get_my_wallet_address(params: GetMyWalletAddressParams):
+    return {"success": True, "data": {"wallet_address": params.wallet_address}}
 
 
 

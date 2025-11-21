@@ -24,7 +24,7 @@ def start_server():
         from server.mcp_server import app
         import uvicorn
         print_banner()
-        uvicorn.run(app, host="0.0.0.0", port=8080, reload=False)
+        uvicorn.run(app, host="0.0.0.0", port=8181, reload=False)
     except ImportError:
         print("❌ Failed to start Server: server.mcp_server not found.")
     except KeyboardInterrupt:

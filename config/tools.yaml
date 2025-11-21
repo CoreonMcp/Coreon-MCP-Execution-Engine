@@ -87,7 +87,7 @@ tools:
         module: tools.token.logic
         function: get_my_wallet_address
         schema_module: tools.token.schema
-#        schema_class: GetMyWalletAddressParams
+        schema_class: GetMyWalletAddressParams
         response_schema_module: tools.token.schema
         response_schema_class: GetMyWalletAddressResponse
 
